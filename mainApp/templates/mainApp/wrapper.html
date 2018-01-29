@@ -9,47 +9,39 @@
     {% load staticfiles %}
     <link rel="stylesheet" href="{% static 'js/bootstrap.min.js'%}" type="text/css">
 
-
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
+
+    <nav class="navbar navbar-default navbar-fixed">
+        <div class="container">
         <div class="navbar-header">
-            <a href="/admin" class="navbar-brand">Шаблон</a>
+            <a class="navbar-brand">Важное название организации</a>
         </div>
 
         <div>
             <ul class="nav navbar-nav">
                 <li><a href="/">Главная страница</a></li>
-                <li><a href="/news">Новости &raquo;</a></li>
+                <li><a href="/news">Новости</a></li>
                 <li><a href="/contact">Контакты</a></li>
             </ul>
         </div>
 
         </div>
-
     </nav>
-    <div class="container">
+
+
+    <div class="container theme-showcase padding-top" role = "main">
+
       <div class="jumbotron">
         <div class="container-8 text-center">
           <h1>{% include "mainApp/includes/some_html.html" %}</h1>
-            <div class="row">
-                <div class="col-md-4" style="background-color: #0c5460">Left Block</div>
-                <div class="col-md-4" style="background-color: #0b2e13">Middle Block</div>
-                <div class="col-md-4" style="background-color: #0069d9">Right Block</div>
-            </div>
+
           {% block content %}
           {% endblock %}
-          <p>
-              <a href="/" class="btn btn-success btn-lg">Главная страница</a>
-              <a href="/news" class="btn btn-primary btn-lg">Новости &raquo;</a>
-              <a href="/contact" class="btn btn-info btn-lg">Контакты</a>
-          </p>
+
         </div>
         </div>
-        <div class="container">
-    <img src="{% static 'mainApp/image/gene.jpeg' %}" class="img-thumbnail">
-        </div>
+
     <hr>
     &copy; Все права защищены 2018
     </div>
