@@ -1,3 +1,7 @@
 from django.shortcuts import render
+from django import forms
 
-# Create your views here.
+
+def post_new(request):
+    form = Form()
+    return render(request, 'News/posts.html', {'form': form})
