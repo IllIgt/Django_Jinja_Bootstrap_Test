@@ -2,6 +2,14 @@
     {% block content %}
         <div class="table-responsive">
             <p><h2>Публикации</h2></p>
+            <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+            {% for post in posts %}
+                <div>
+                    <p>published: {{ post.published_date }}</p>
+                    <h1><a href="">{{ post.title }}</a></h1>
+                    <p>{{ post.text|linebreaks }}</p>
+                </div>
+            {% endfor %}
         <table class = 'table table-hover table-bordered' style="background-color: #79aec8">
             <thead>
                 <tr>
