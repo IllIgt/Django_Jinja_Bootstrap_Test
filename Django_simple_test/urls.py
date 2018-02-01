@@ -7,6 +7,6 @@ urlpatterns = [
     path('adminuser/', admin.site.urls),
     url(r'^', include('mainApp.urls')),
     url(r'^news/', include('News.urls')),
-    url(r'blog/', include('blog.urls')),
+    url(r'publication/', include('News.urls')),
 
 ]

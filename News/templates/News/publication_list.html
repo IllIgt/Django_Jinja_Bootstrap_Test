@@ -1,0 +1,19 @@
+{% extends "mainApp/wrapper.html" %}
+
+<div class="content container">
+    <h1><a href="{% url 'publication_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+    <a href="{% url 'publication_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+    <div class="row">
+        <div class="col-md-8">
+            {% for post in posts %}
+                <div class="post">
+                    <div class="date">
+                        <p>Опубликовано: {{ post.published_date }}</p>
+                    </div>
+                    <h1><a href="">{{ post.title }}</a></h1>
+                    <p>{{ post.text|linebreaksbr }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
