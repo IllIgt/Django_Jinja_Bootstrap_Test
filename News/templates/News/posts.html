@@ -10,6 +10,8 @@
                     <th>#</th>
                     <th>Второй столбец</th>
                     <th class = btn-group-sm>Третий столбец</th>
+                    <th class = btn-group-sm>туть тело</th>
+                    <th class = btn-group-sm>туть юзер</th>
                 </tr>
             </thead>
             <tbody>
@@ -19,6 +21,9 @@
                     <td>{{post.id}}</td>
                     <td>{{post.title}}</td>
                     <td>{{post.date|date:'d-m-Y'}}</td>
+                    <td>{{post.text}}</td>
+                    <td>{{post.author}}</td>
+
                 </tr>
                 {% endfor %}
             </tbody>

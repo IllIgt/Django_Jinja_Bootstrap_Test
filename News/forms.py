@@ -6,4 +6,4 @@ class PublicationForm(forms.ModelForm):
 
     class Meta:
         model = Publications
-        fields = ('title', 'text')
+        fields = ('title', 'text', 'date', 'author')
