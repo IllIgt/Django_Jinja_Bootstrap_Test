@@ -3,11 +3,27 @@ from .models import Publications
 from .forms import PublicationForm
 from django.shortcuts import render, get_object_or_404
 from django.shortcuts import redirect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+
+def listing(request):
+    contact_list = Publications.objects.all()
+    paginator = Paginator(contact_list, 25) # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    try:
+        contacts = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        contacts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        contacts = paginator.page(paginator.num_pages)
+    return render_to_response('News/posts.html', {"contacts": contacts})
 
 def post_list(request):
     posts = Publications.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    return render(request, 'News/publication_list.html', {'publications': posts})
+    return render(request, 'News/posts.html', {'publications': posts})
 
 
 def post_new(request):

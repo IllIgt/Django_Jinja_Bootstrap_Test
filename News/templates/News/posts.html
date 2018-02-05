@@ -3,6 +3,28 @@
 
         <div class="table-responsive">
             <p><h2 class = text-center>Публикации</h2></p>
+                {% for post in object_list %}
+            {# Each "contact" is a Contact model object. #}
+            {{ post.title}}<br />
+            ...
+        {% endfor %}
+
+        <div class="pagination">
+            <span class="step-links">
+                {% if post.has_previous %}
+                    <a href="?page={{ contacts.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
+                </span>
+
+                {% if contacts.has_next %}
+                    <a href="?page={{ contacts.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+
         <table class = 'table table-hover table-bordered' style="background-color: #79aec8">
         <a href="{% url 'publication_new' %}"><span class="glyphicon glyphicon-plus"></span></a>
             <thead>
