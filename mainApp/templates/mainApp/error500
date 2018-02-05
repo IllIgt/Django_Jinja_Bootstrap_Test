@@ -1,0 +1,4 @@
+{% extends "mainApp/wrapper.html" %}
+    {% block content %}
+        <h3>Ой Мы такого не знали</h3>
+    {% endblock %}

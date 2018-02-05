@@ -7,23 +7,24 @@
         <a href="{% url 'publication_new' %}"><span class="glyphicon glyphicon-plus"></span></a>
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Второй столбец</th>
-                    <th class = btn-group-sm>Третий столбец</th>
-                    <th class = btn-group-sm>туть тело</th>
-                    <th class = btn-group-sm>туть юзер</th>
+                    <th>Название</th>
+                    <th>Авторы</th>
+                    <th class = btn-group-sm>Издателсьво</th>
+                    <th class = btn-group-sm>Страницы</th>
+                    <th class = btn-group-sm>Дата публикации</th>
+                    <th class = btn-group-sm>город/Страна</th>
                 </tr>
             </thead>
             <tbody>
 
                 {% for post in object_list %}
                     <tr onclick="window.location = '/news/publication/{{post.id}}'+'/'">
-                    <td>{{post.id}}</td>
-                    <td>{{post.title}}</td>
-                    <td>{{post.date|date:'d-m-Y'}}</td>
-                    <td>{{post.text}}</td>
-                    <td>{{post.author}}</td>
-
+                        <td>{{post.title}}</td>
+                        <td>{{post.author}}</td>
+                        <td>{{post.publishing_house}}</td>
+                        <td>{{ post.pages }}</td>
+                        <td>{{post.date|date:'d-m-Y'}}</td>
+                        <td>{{post.location}}</td>
                 </tr>
                 {% endfor %}
             </tbody>

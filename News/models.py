@@ -2,20 +2,13 @@ from django.db import models
 from django.utils import timezone
 
 
-class Articles(models.Model):
-    title = models.CharField(max_length=120)
-    body = models.TextField()
-    date = models.DateTimeField()
-
-    def __str__(self):
-        return self.title
-
-
 class Publications(models.Model):
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
-    text = models.TextField()
-    date = models.DateTimeField(default=timezone.now)
+    publishing_house = models.TextField()
+    date = models.DateField('Дата публикации')
+    location = models.CharField(max_length=200)
+    pages = models.CharField(max_length=200)
     published_date = models.DateTimeField(blank=True, null=True)
 
     def publish(self):
