@@ -3,28 +3,6 @@
 
         <div class="table-responsive">
             <p><h2 class = text-center>Публикации</h2></p>
-                {% for post in object_list %}
-            {# Each "contact" is a Contact model object. #}
-            {{ post.title}}<br />
-            ...
-        {% endfor %}
-
-        <div class="pagination">
-            <span class="step-links">
-                {% if post.has_previous %}
-                    <a href="?page={{ contacts.previous_page_number }}">previous</a>
-                {% endif %}
-
-                <span class="current">
-                    Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
-                </span>
-
-                {% if contacts.has_next %}
-                    <a href="?page={{ contacts.next_page_number }}">next</a>
-                {% endif %}
-            </span>
-        </div>
-
         <table class = 'table table-hover table-bordered' style="background-color: #79aec8">
         <a href="{% url 'publication_new' %}"><span class="glyphicon glyphicon-plus"></span></a>
             <thead>
@@ -38,8 +16,7 @@
                 </tr>
             </thead>
             <tbody>
-
-                {% for post in object_list %}
+                {% for post in posts %}
                     <tr onclick="window.location = '/news/publication/{{post.id}}'+'/'">
                         <td>{{post.title}}</td>
                         <td>{{post.author}}</td>
@@ -47,9 +24,31 @@
                         <td>{{ post.pages }}</td>
                         <td>{{post.date|date:'d-m-Y'}}</td>
                         <td>{{post.location}}</td>
-                </tr>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>
-         </div>
-    {% endblock %}
+
+        {% if posts.has_other_pages %}
+          <ul class="pagination">
+            {% if posts.has_previous %}
+              <li><a href="?page={{ posts.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+              <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in posts.paginator.page_range %}
+              {% if posts.number == i %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+              {% else %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+              {% endif %}
+            {% endfor %}
+            {% if posts.has_next %}
+              <li><a href="?page={{ posts.next_page_number }}">&raquo;</a></li>
+            {% else %}
+              <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+          </ul>
+        {% endif %}
+     </div>
+{% endblock %}

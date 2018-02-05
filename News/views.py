@@ -1,25 +1,26 @@
 from django.utils import timezone
 from .models import Publications
 from .forms import PublicationForm
-from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView, DetailView
+from django.shortcuts import render, get_object_or_404, render_to_response
 from django.shortcuts import redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
-def listing(request):
-    contact_list = Publications.objects.all()
-    paginator = Paginator(contact_list, 25) # Show 25 contacts per page
+def index(request):
+    posts_list = Publications.objects.all()
+    page = request.GET.get('page', 1)
 
-    page = request.GET.get('page')
+    paginator = Paginator(posts_list, 20)
     try:
-        contacts = paginator.page(page)
+        posts = paginator.page(page)
     except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        contacts = paginator.page(1)
+        posts = paginator.page(1)
     except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        contacts = paginator.page(paginator.num_pages)
-    return render_to_response('News/posts.html', {"contacts": contacts})
+        posts = paginator.page(paginator.num_pages)
+
+    return render(request, 'News/posts.html', {'posts': posts})
+
 
 def post_list(request):
     posts = Publications.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
