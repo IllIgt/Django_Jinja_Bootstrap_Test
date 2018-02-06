@@ -3,9 +3,10 @@ from django.utils import timezone
 
 
 class Authors (models.Model):
-    surname = models.CharField(max_length=12)
-    initials = models.CharField(max_length=6)
-    is_lab_employee = models.BooleanField(default=True)
+    surname = models.CharField(max_length = 12)
+    initials = models.CharField(max_length = 6)
+    is_lab_employee = models.BooleanField(default = True)
+
 
     def publish(self):
         self.save()
@@ -15,7 +16,7 @@ class Authors (models.Model):
 
 
 class Publications(models.Model):
-    author = models.ForeignKey(Authors, on_delete=models.CASCADE, default='Unknown')
+    author = models.ForeignKey('Authors', on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     publishing_house = models.TextField()
     date = models.DateField('Дата публикации')
@@ -24,7 +25,6 @@ class Publications(models.Model):
     published_date = models.DateTimeField(blank=True, null=True)
 
     def publish(self):
-
         self.published_date = timezone.now()
         self.save()
 
