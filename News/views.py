@@ -1,5 +1,5 @@
 from django.utils import timezone
-from .models import Publications
+from .models import Publications,Authors
 from .forms import PublicationForm
 from django.views.generic import ListView, DetailView
 from django.shortcuts import render, get_object_or_404, render_to_response
@@ -32,7 +32,7 @@ def post_new(request):
         form = PublicationForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
-            post.author = request.user
+            post.author = request.Authors
             post.published_date = timezone.now()
             post.save()
             return redirect('publication_detail', pk=post.pk)
