@@ -7,7 +7,6 @@ class Authors (models.Model):
     initials = models.CharField(max_length = 6)
     is_lab_employee = models.BooleanField(default = True)
 
-
     def publish(self):
         self.save()
 
