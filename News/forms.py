@@ -7,7 +7,9 @@ class PublicationForm(forms.ModelForm):
     class Meta:
         model = Publications
         fields = ('title', 'author', 'date', 'publishing_house', 'location', 'pages')
-
+        widgets = {
+            'author': forms.CheckboxSelectMultiple,
+        }
 
 class AuthorsForm(forms.ModelForm):
 
