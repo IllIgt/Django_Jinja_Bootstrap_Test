@@ -32,10 +32,9 @@ def post_new(request):
         form = PublicationForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
-            authors = Authors.objects.get(pk=post.author.pk)
-            post.authors.add(authors)
             post.published_date = timezone.now()
             post.save()
+            form.save_m2m()
             return redirect('publication_detail', pk=post.pk)
     else:
         form = PublicationForm()

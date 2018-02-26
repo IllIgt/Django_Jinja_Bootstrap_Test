@@ -19,7 +19,7 @@
                 {% for post in posts %}
                     <tr onclick="window.location = '/news/publication/{{post.id}}'+'/'">
                         <td>{{post.title}}</td>
-                        <td>{{post.author}}</td>
+                        <td>{% for author in post.author.all %} {{ author }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
                         <td>{{post.publishing_house}}</td>
                         <td>{{ post.pages}}</td>
                         <td>{{post.date|date:'d-m-Y'}}</td>

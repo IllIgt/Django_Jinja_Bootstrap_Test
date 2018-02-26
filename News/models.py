@@ -15,7 +15,7 @@ class Authors (models.Model):
 
 
 class Publications(models.Model):
-    author = models.ManyToManyField('Authors')
+    author = models.ManyToManyField('Authors', help_text = 'Выберите авторов')
     title = models.CharField(max_length=200)
     publishing_house = models.TextField()
     date = models.DateField('Дата публикации')
@@ -32,4 +32,6 @@ class Publications(models.Model):
 
     class Meta:
         ordering = ['-pk']
+
+
 
