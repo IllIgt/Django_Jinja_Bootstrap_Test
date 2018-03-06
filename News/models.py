@@ -10,6 +10,9 @@ class Authors (models.Model):
     def publish(self):
         self.save()
 
+    def delete(self):
+        self.delete()
+
     def __str__(self):
         return self.surname + ' ' + self.initials
 
@@ -26,6 +29,9 @@ class Publications(models.Model):
     def publish(self):
         self.published_date = timezone.now()
         self.save()
+
+    def delete(self):
+        self.delete()
 
     def __str__(self):
         return self.title
